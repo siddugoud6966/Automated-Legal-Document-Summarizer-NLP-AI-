@@ -1,0 +1,72 @@
+Automated_Legal_Document_Summarizer
+Project Overview
+The Automated_Legal_Document_Summarizer is a comprehensive Python-based application designed to streamline the processing and analysis of legal documents stored as PDFs. Legal professionals, researchers, and analysts often face the challenge of quickly digesting large volumes of complex legal texts. This project leverages state-of-the-art Natural Language Processing (NLP) techniques to automate two key tasks: summarization of lengthy legal documents and extraction of critical entities such as people, organizations, and locations.
+
+By combining powerful transformer models with efficient text extraction tools, this system provides a scalable solution to facilitate faster review, enhanced insight generation, and better document management workflows for legal texts.
+
+Key Features
+PDF Text Extraction: Utilizes PyMuPDF (fitz) to accurately extract raw text from multi-page legal PDF documents without requiring OCR, preserving the original text formatting where possible.
+
+Recursive Summarization: Employs a custom transformer-based summarization model capable of handling very long documents by chunking the text intelligently and recursively summarizing each part until a concise summary is generated.
+
+Named Entity Recognition (NER): Implements a BERT-based NER pipeline (using the "dslim/bert-base-NER" model) to identify and extract important named entities — including persons, organizations, and locations — from the legal text. This helps highlight key players and places referenced in the documents.
+
+Batch Processing: Processes an entire directory of legal PDFs, automatically performing extraction, summarization, and entity extraction on each file and compiling the results into a structured CSV file for easy review and further analysis.
+
+Warnings and Logging Control: Suppresses irrelevant warnings to ensure clean output, improving usability and readability when running the tool on large datasets.
+
+Use Cases
+Legal Professionals: Quickly gain summaries and key entity information from contracts, case files, and legislation documents to speed up review cycles.
+
+Researchers: Analyze large corpora of legal documents to extract trends about involved entities and generate concise document summaries for literature reviews.
+
+Data Scientists: Use the extracted data as structured input for downstream machine learning models, analytics, or legal tech solutions.
+
+How It Works
+Input: User provides the path to a directory containing one or more legal PDF documents.
+
+Text Extraction: Each PDF is opened and text is extracted page-by-page using PyMuPDF.
+
+Summarization: The extracted text is split into manageable chunks. Each chunk is summarized recursively until a final condensed summary is produced, handling very long documents without memory issues.
+
+Entity Extraction: The entire text is analyzed to find and group named entities by category (person, organization, location) using a pre-trained BERT model fine-tuned for NER.
+
+Output: The results (file name, summary, and extracted entities) are compiled into a CSV file named legal_document_analysis.csv within the input directory.
+
+Installation and Setup
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Requirements include:
+
+PyMuPDF (fitz)
+
+Transformers (transformers)
+
+scikit-learn (sklearn)
+
+Usage
+Run the script in your environment (Google Colab, local machine, etc.) and enter the directory path containing your PDF files when prompted:
+
+bash
+Copy
+Edit
+python automated_legal_document_summarizer.py
+Example input when prompted:
+
+mathematica
+Copy
+Edit
+Enter the path to the directory containing legal PDF files: /content/legal_pdfs
+After processing, the summary and entity extraction results will be saved in the directory as legal_document_analysis.csv.
+
+Future Enhancements
+Add support for OCR to process scanned PDFs.
+
+Incorporate customizable summarization length and entity extraction filters.
+
+Build a web interface for easier upload and visualization.
+
+Integrate with legal databases and document management systems.
+
